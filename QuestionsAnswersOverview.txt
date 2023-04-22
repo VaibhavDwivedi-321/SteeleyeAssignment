@@ -2,9 +2,7 @@ Question 1: Explain what the simple List Component does?
 Answer:
 The List component is used to display the items array's list of elements.
 Here the WrappedListComponent produces a component list and accepts an array of strings(text) as props.
-
 It traverses the array for each item and shows its content on the screen with a background color(red when unselected and green if selected).
-
 When one of the items is selected, the background colour (red) changes. When the user clicks on an item, it is chosen and given the background colour of Green.
 
 
@@ -34,7 +32,7 @@ Answer:
     	})
   	),
 	};
-  As we can see the correct way to do deep data validation using PropTypes is by using the shape() method of PropTypes.
+   As we can see the correct way to do deep data validation using PropTypes is by using the shape() method of PropTypes.
 
 
 3) There is an error in iteration because of the null map values:
