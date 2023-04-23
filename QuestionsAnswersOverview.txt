@@ -6,67 +6,55 @@ It traverses the array for each item and shows its content on the screen with a 
 When one of the items is selected, the background colour (red) changes. When the user clicks on an item, it is chosen and given the background colour of Green.
 
 
-
-
-
 Question 2: What problems / warnings are there with code?
 Answer:
 
-1) There is a problem in declaration of UseState:
-   Before:
-   const [setSelectedIndex, selectedIndex] = useState();
-   After fix:
-   const [selectedIndex, setSelectedIndex] = useState("");
+1)There is a problem in declaration of UseState:
+Before:
+ const [setSelectedIndex, selectedIndex] = useState();
+After fix:
+const [selectedIndex, setSelectedIndex] = useState("");
+
 
 
 2) There is a problem in calling in the code given:
-   Before:
- 	items: PropTypes.array(PropTypes.shapeOf({
+Before:
+items: PropTypes.array(PropTypes.shapeOf({
     	text: PropTypes.string.isRequired,
   	})),
 	};
-   After fix:
-	items: PropTypes.arrayOf(
-    	PropTypes.shape({
-      	text: PropTypes.string.isRequired,
-    	})
-  	),
-	};
-   As we can see the correct way to do deep data validation using PropTypes is by using the shape() method of PropTypes.
+After fix:
+items: PropTypes.arrayOf(
+      PropTypes.shape({
+      text: PropTypes.string.isRequired
+      })
+      ),
+      };
+As we can see the correct way to do deep data validation using PropTypes is by using the shape() method of PropTypes.
 
 
 3) There is an error in iteration because of the null map values:
-	fix: 
-	Therefore we declare a constant named items which defines as an array of objects
-	
-	WrappedListComponent.propTypes = {
-  		items: PropTypes.arrayOf(
-    		PropTypes.shape({
-      		text: PropTypes.string.isRequired
-    	})
-  	)
-	};
-
-	const items = [
-  	{ text: "Vaibhav", index: 1 },
-  	{ text: "Kushal", index: 2 },
-  	{ text: "Saksham", index: 3 },
-  	{ text: "Aditya", index: 4 },
-  	{ text: "Ummul", index: 5 },
-  	{ text: "Ujjual", index: 6 }
-	];
-
-	WrappedListComponent.defaultProps = {
-  	items: items
-	};
-
-
-
+fix:
+Therefore we initialized some objects in items which defines as an array of objects
+WrappedListComponent.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired
+    })
+  )
+};
+WrappedListComponent.defaultProps = {
+  items: [
+    { text: "Vaibhav Dwivedi" },
+    { text: "12015229" },
+    { text: "Lovely Professional University" },
+    { text: "Thanks For Visiting My Github" }
+  ]
+};
 
 
 
 Question 3: fixed, optimized, and modified the component
-
 
 import React, { useState, useEffect, memo } from "react";
 
@@ -141,4 +129,3 @@ WrappedListComponent.defaultProps = {
 const List = memo(WrappedListComponent);
 
 export default List;
-
